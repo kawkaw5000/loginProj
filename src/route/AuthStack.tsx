@@ -8,6 +8,7 @@ import Login from '../screens/Login'
 export type AuthStackParamList = {
     Login: undefined;
     Signup: undefined;
+    Home: undefined;
 }
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();

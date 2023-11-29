@@ -12,6 +12,7 @@ import {AppwriteContext} from '../appwrite/AppwriteContext'
 // Navigation
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthStackParamList} from '../route/AuthStack';
+import Home from './Home'
 
 type LoginScreenProps = NativeStackScreenProps<AuthStackParamList, 'Login'>
 
@@ -27,36 +28,37 @@ const Login = ({navigation}: LoginScreenProps) => {
 
   const handleLogin = () => {
     if (email.length < 1 || password.length < 1) {
-      setError('All fields are required')
+      setError('All fields are required');
     } else {
       const user = {
         email,
-        password
-      }
+        password,
+      };
       appwrite
-      .login(user)
-      .then((response) => {
-        if (response) {
-          setIsLoggedIn(true);
-          Snackbar.show({
-            text: 'Login Success',
-            duration: Snackbar.LENGTH_SHORT
-          })
-        }
-      })
-      .catch(e => {
-        console.log(e);
-        setEmail('Incorrect email or password')
-        
-      })
+        .login(user)
+        .then((response) => {
+          if (response) {
+            setIsLoggedIn(true);
+            Snackbar.show({
+              text: 'Login Success',
+              duration: Snackbar.LENGTH_SHORT,
+            });
+            navigation.replace('Home');
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          setError('Incorrect email or password');
+        });
     }
-  }
+  };
+  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}>
       <View style={styles.formContainer}>
-        <Text style={styles.appName}>Appwrite Auth</Text>
+        <Text style={styles.appName}>NOTE APP</Text>
 
         {/* Email */}
         <TextInput

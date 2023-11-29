@@ -52,6 +52,7 @@ const Signup = ({navigation}: SignupScreenProps) => {
               text: 'Signup success',
               duration: Snackbar.LENGTH_SHORT
             })
+            navigation.navigate('Login');
           }
         })
         .catch(e => {
@@ -67,7 +68,7 @@ return (
     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     style={styles.container}>
     <View style={styles.formContainer}>
-      <Text style={styles.appName}>Appwrite Auth</Text>
+      <Text style={styles.appName}>REGISTER</Text>
 
       {/* Name */}
       <TextInput

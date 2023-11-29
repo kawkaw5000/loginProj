@@ -1,24 +1,24 @@
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-// import SignUpScreen from './src/SignUpScreen';
-// import LoginScreen from './src/LoginScreen';
-// import HomeScreen from './src/HomeScreen';
-import Home from './screens/Home';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './screens/Login';
+import Home from './screens/Home';
 import Signup from './screens/Signup';
-import {AuthStackParamList} from './route/AuthStack';
+import { AuthStackParamList } from './route/AuthStack';
 
 
-const Stack = createStackNavigator();
 
-function App() {
+const Stack = createNativeStackNavigator<AuthStackParamList>();
+
+
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Signup">
+      <Stack.Navigator initialRouteName='Login'>
+        <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
+        <Stack.Screen options={{ headerShown: false }} name="Signup" component={Signup} />
+        <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-export default App;
